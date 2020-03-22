@@ -1,2 +1,0 @@
-# smart-attendance-managment-system
-This is an Attendance Management System which marks attendance of a class and stores record of each student’s attendance. It might just sounds like any other AMS system but it is not. This is much more different than any other AMS system. It is intelligent. It is built in correspondence to lesser the effort of Professor. Attendance will be marked by auto calling names of Students and in return listening response of student. This is all done by system, no need of user required.
