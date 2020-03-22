@@ -1,0 +1,113 @@
+﻿@model Attendance.ViewModels.InstructorEditModel
+@{
+    ViewBag.Title = "Instructor";
+}
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "BS(CS)",
+        Value = "BS(CS)"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "BS(SE)",
+        Value = "BS(SE)",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "BS(IT)",
+        Value = "BS(IT)"
+    });
+}
+@{
+    List<SelectListItem> listItems1 = new List<SelectListItem>();
+    listItems1.Add(new SelectListItem
+    {
+        Text = "PF",
+        Value = "PF"
+    });
+    listItems1.Add(new SelectListItem
+    {
+        Text = "OOP",
+        Value = "OOP",
+
+    });
+    listItems1.Add(new SelectListItem
+    {
+        Text = "DSA",
+        Value = "DSA"
+    });
+}
+@{
+    
+
+    List<SelectListItem> listItem = new List<SelectListItem>();
+    listItem.Add(new SelectListItem
+    {
+        Text = @Model.username,
+        Value = @Model.username,
+        Selected = true
+    });
+   
+}
+
+@Html.Partial("_NavBar")
+
+<div class="container">
+
+    <div class="row">
+        @using (Html.BeginForm("EditInstructor", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.name, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.name, new { @class = "form-control", required = "required" })
+                @*@Html.ValidationMessageFor(m => m.Instructors.name)*@
+            </div>
+
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.username, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.username, Model.username, new { @class = "form-control", @readonly = "readonly" })
+                @*@Html.DropDownListFor(m => m.Instructors.section,listItem, "UserName",new { @class = "form-control" })*@
+                @*@Html.ValidationMessageFor(m => m.Instructors.username)*@
+            </div>
+
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.password, new { @class = "control-label" })
+                @Html.PasswordFor(m => m.password, new { @class = "form-control", required = "required" })
+                @*@Html.ValidationMessageFor(m => m.Instructors.password)*@
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.repassword, new { @class = "control-label" })
+                @Html.PasswordFor(m => m.repassword, new { @class = "form-control", required = "required" })
+
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.section, new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.section, listItems, "Select Section", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.subject, new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.subject, listItems1, "Select Subject", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.image_path, new { @class = "control-label" })
+                <input name="image" type="file" class="form-control">
+
+            </div>
+
+            @Html.HiddenFor(m => m.id)
+
+            <div class="m-t-20 text-center">
+                <button class="btn btn-primary" type="submit">Edit Instructor</button>
+            </div>
+        }
+    </div>
+
+
+</div>

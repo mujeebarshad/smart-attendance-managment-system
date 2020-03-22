@@ -1,0 +1,83 @@
+﻿@model Attendance.ViewModels.StudentViewModel
+@{
+    ViewBag.Title = "Sheet";
+}
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "PF",
+        Value = "PF"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "OOP",
+        Value = "OOP",
+        
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "DSA",
+        Value = "DSA"
+    });
+}
+@Html.Partial("_NavBar")
+
+<div class="container-fluid">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">Mark Attendance</h4>
+            </div>
+
+            <div class="col-md-4">
+                @Html.ActionLink("Auto Mark", "MarkAttendance", "Instructor", new { @class = "btn btn-primary  rounded pull-right", style = "margin-left:1%" })
+                @Html.ActionLink("View Sheet", "Index", "Instructor", new { @class = "btn btn-primary  rounded pull-right" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    @using (Html.BeginForm("Save", "Instructor"))
+                    {
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(m => m.extra, listItems, "Select Subject", new { @class = "form-control" })
+                            <br/><br/>
+                        </div>
+
+
+                        <table class="table table-striped custom-table m-b-0 ">
+                            <thead>
+                                <tr>
+                                    <th><b>Roll Number</b></th>
+                                    <th><b>Name</b></th>
+                                    <th class="text-right"><b>Status</b></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var student in Model.st_list)
+                                {
+                                    <tr>
+                                        <td>@student.name</td>
+                                        <td>@student.rollno</td>
+                                        <td class="text-right">
+                                            <input name="@{@student.rollno}" type="checkbox" value="1" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+
+                        </table>
+                        <br />
+
+                        <button type="submit" class="btn btn-default rounded pull-right"><b>Submit Attendance</b></button>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

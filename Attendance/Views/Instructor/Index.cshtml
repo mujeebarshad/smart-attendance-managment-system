@@ -1,0 +1,108 @@
+﻿@model Attendance.ViewModels.StudentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@Html.Partial("_NavBar")
+
+<div class="container-fluid">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">Attendance Sheet</h4>
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Mark Attendance", "MarkAttendance", "Instructor", new { @class = "btn btn-primary  rounded pull-right"})
+            </div>
+        </div>
+        <div class="row filter-row">
+            <div class="col-sm-3 col-xs-6">
+                <div class="form-group form-focus">
+                    <label class="control-label">Employee Name</label>
+                    <input type="text" class="form-control floating" />
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <div class="form-group form-focus select-focus">
+                    <label class="control-label">Select Month</label>
+                    <select class="select floating">
+                        <option>-</option>
+                        <option>Jan</option>
+                        <option>Feb</option>
+                        <option>Mar</option>
+                        <option>Apr</option>
+                        <option>May</option>
+                        <option>Jun</option>
+                        <option>Jul</option>
+                        <option>Aug</option>
+                        <option>Sep</option>
+                        <option>Oct</option>
+                        <option>Nov</option>
+                        <option>Dec</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <div class="form-group form-focus select-focus">
+                    <label class="control-label">Select Year</label>
+                    <select class="select floating">
+                        <option>-</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#" class="btn btn-success btn-block"> Search </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                        <table class="table table-striped custom-table m-b-0 ">
+                            <thead>
+                            <tr>
+                                <th><b>Date</b></th>
+                                <th><b>Roll Number</b></th>
+                                <th><b>Name</b></th>
+                                <th class="text-right"><b>Status</b></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            @foreach (var atd in Model.at_list)
+                            {
+                            <tr>
+                                <td>@atd.Date</td>
+                                <td>@atd.student.rollno</td>
+                                <td>@atd.student.name</td>
+                                <td class="text-right">
+                                    @if (@atd.Status)
+                                    {
+                                        <i class="fa fa-check text-success"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-close text-danger"></i>
+                                    }
+                                </td>
+                            </tr>
+                            }
+                           </tbody>
+
+
+                    </table>
+                        <br />
+
+                     
+               
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
